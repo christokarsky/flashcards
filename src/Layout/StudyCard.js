@@ -46,6 +46,7 @@ function StudyCard({ deck, deckId }) {
         </ol>
       </nav>
       <h1>Study: {deck.name}</h1>
+      <div className="border p-3">
       <h2>
         Card {session.index + 1} of {deck.cards.length}
       </h2>
@@ -54,12 +55,13 @@ function StudyCard({ deck, deckId }) {
           ? deck.cards[session.index].back
           : deck.cards[session.index].front}
       </p>
-      <button onClick={handleFlip}>Flip</button>
+      <button onClick={handleFlip} className="btn btn-secondary mr-1">Flip</button>
       {session.viewed && session.index < deck.cards.length - 1 ? (
-        <button onClick={handleFlipNext}>Next</button>
+        <button onClick={handleFlipNext} className="btn btn-primary">Next</button>
       ) : (
-        session.viewed && <button onClick={handleReset}>Reset</button>
+        session.viewed && <button onClick={handleReset} className="btn btn-primary">Reset</button>
       )}
+      </div>
     </div>
   );
 }

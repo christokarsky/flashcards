@@ -46,39 +46,53 @@ function ViewDeck() {
   if (deck.id) {
     return (
       <div>
-        <nav>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="breadcrumb-item active">{deck.name}</li>
-          </ol>
-        </nav>
-        <h2>{deck.name}</h2>
-        <p>{deck.description}</p>
-        <Link to={`/decks/${deckId}/edit`}>
-          <button className="btn btn-primary mr-1" >Edit</button>
-        </Link>
-        <Link to={`/decks/${deckId}/study`}>
-          <button className="btn btn-primary mr-1">Study</button>
-        </Link>
-        <Link to={`/decks/${deckId}/cards/new`}>
-          <button className="btn btn-primary mr-1">Add Cards</button>
-        </Link>
-        <button className="btn btn-danger mr-1" onClick={() => handleDeckDelete(deckId)}>Delete</button>
-        <h1>Cards</h1>
+        <h2 className="mb-3">Cards</h2>
+        <div className="d-flex">
+          <div className="mr-1">
+            <Link to={`/decks/${deckId}/edit`}>
+              <button className="btn btn-primary mr-1 mb-2">Edit</button>
+            </Link>
+          </div>
+          <div className="mr-1">
+            <Link to={`/decks/${deckId}/study`}>
+              <button className="btn btn-primary mr-1 mb-2">Study</button>
+            </Link>
+          </div>
+          <div className="mr-1">
+            <Link to={`/decks/${deckId}/cards/new`}>
+              <button className="btn btn-primary mr-1 mb-2">Add Cards</button>
+            </Link>
+          </div>
+          <div className="ml-auto">
+            <button
+              className="btn btn-danger mb-2 ml-auto"
+              onClick={() => handleDeckDelete(deckId)}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
         {cards.map((card) => (
-          <div key={card.id}>
-            <p>
-            {card.front}
-            </p>
-            <p>
-            {card.back}
-            </p>
-            <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>
-                <button className="btn btn-primary mr-1">edit</button>
-                </Link>
-            <button className="btn btn-danger" onClick={() => handleCardDelete(card.id)}>delete</button>
+          <div key={card.id} className="border p-3 mb-3">
+            <div className="row">
+              <div className="col-md-6">
+                <p>{card.front}</p>
+              </div>
+              <div className="col-md-6">
+                <p>{card.back}</p>
+                <div className="d-flex justify-content-end">
+                  <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>
+                    <button className="btn btn-primary mr-1">edit</button>
+                  </Link>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleCardDelete(card.id)}
+                  >
+                    delete
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </div>

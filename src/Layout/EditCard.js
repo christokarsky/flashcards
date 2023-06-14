@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link, useHistory } from 'react-router-dom';
-import { readDeck, readCard, updateCard } from '../utils/api';
+import React, { useEffect, useState } from "react";
+import { useParams, Link, useHistory } from "react-router-dom";
+import { readDeck, readCard, updateCard } from "../utils/api";
+import CardForm from "./CardForm";
 
 function EditCard() {
   const { deckId, cardId } = useParams();
   const [deck, setDeck] = useState({});
   const [card, setCard] = useState({});
-  const [cardFront, setCardFront] = useState('');
-  const [cardBack, setCardBack] = useState('');
+  const [cardFront, setCardFront] = useState("");
+  const [cardBack, setCardBack] = useState("");
   const history = useHistory();
 
-  const handleCardFrontChange = (event) => {
-    setCardFront(event.target.value);
-  };
-
-  const handleCardBackChange = (event) => {
-    setCardBack(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (newCard) => {
     const updatedCard = {
       ...card,
-      front: cardFront,
-      back: cardBack,
+      ...newCard,
     };
     updateCard(updatedCard)
       .then(() => {
@@ -47,6 +38,11 @@ function EditCard() {
       });
   }, [deckId, cardId]);
 
+  const handleCancel = (event) => {
+    event.preventDefault();
+    history.push(`/decks/${deckId}`);
+  };
+
   return (
     <div>
       <nav>
@@ -61,30 +57,14 @@ function EditCard() {
         </ol>
       </nav>
       <h1>Edit Card {cardId}</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="cardFront">Front</label>
-          <textarea
-            id="cardFront"
-            value={cardFront}
-            onChange={handleCardFrontChange}
-            required
-            placeholder="Front side of card"
-          />
-        </div>
-        <div>
-          <label htmlFor="cardBack">Back</label>
-          <textarea
-            id="cardBack"
-            value={cardBack}
-            onChange={handleCardBackChange}
-            required
-            placeholder="Back side of card"
-          />
-        </div>
-        <Link to={`/decks/${deckId}`}>Cancel</Link>
-        <button type="submit">Save</button>
-      </form>
+      {cardFront && cardBack && (
+        <CardForm
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
+          cardFront={cardFront}
+          cardBack={cardBack}
+        />
+      )}
     </div>
   );
 }

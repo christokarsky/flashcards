@@ -1,36 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { readDeck, createCard } from '../utils/api';
 import { useParams, useHistory, Link } from 'react-router-dom';
+import CardForm from "./CardForm";
 
 function AddCard() {
   const { deckId } = useParams();
   const [deck, setDeck] = useState({});
-  const [front, setFront] = useState('');
-  const [back, setBack] = useState('');
   const history = useHistory();
+
+  const [cardFront, setCardFront] = useState('');
+  const [cardBack, setCardBack] = useState('');
 
   useEffect(() => {
     readDeck(deckId).then(setDeck);
   }, [deckId]);
 
-  const handleFrontChange = (event) => {
-    setFront(event.target.value);
-  };
-
-  const handleBackChange = (event) => {
-    setBack(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newCard = {
-      front,
-      back,
-    };
+  const handleSubmit = (newCard) => {
     createCard(deckId, newCard)
       .then(() => {
-        setFront('');
-        setBack('');
+        history.push(`/decks/${deckId}`);
       })
       .catch((error) => {
         console.log(error);
@@ -55,30 +43,7 @@ function AddCard() {
         </ol>
       </nav>
       <h2>{deck.name}: Add Card</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="cardFront">Front</label>
-          <textarea
-            id="cardFront"
-            value={front}
-            onChange={handleFrontChange}
-            required
-            placeholder="Front side of card"
-          />
-        </div>
-        <div>
-          <label htmlFor="cardBack">Back</label>
-          <textarea
-            id="cardBack"
-            value={back}
-            onChange={handleBackChange}
-            required
-            placeholder="Back side of card"
-          />
-        </div>
-        <button onClick={handleDone}>Done</button>
-        <button type="submit">Save</button>
-      </form>
+      <CardForm handleSubmit={handleSubmit} handleDone={handleDone} cardFront={cardFront} cardBack={cardBack} setCardFront={setCardFront} setCardBack={setCardBack} />
     </div>
   );
 }

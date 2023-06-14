@@ -33,7 +33,6 @@ function EditDeck() {
     readDeck(deckId).then(setDeck);
   }, [deckId]);
 
-  console.log(deckName);
   return (
     <div>
       <nav>
@@ -47,36 +46,53 @@ function EditDeck() {
           <li className="breadcrumb-item active">{deck.name}</li>
         </ol>
       </nav>
-      <h1>Edit Deck</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="deckName">Name</label>
-          <input
-            type="text"
-            id="deckName"
-            value={deck.name}
-            onChange={handleDeckNameChange}
-            placeholder={deck.name}
-            required
-          />
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h1>Edit Deck</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="deckName" className="form-label">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="deckName"
+                  value={deck.name}
+                  onChange={handleDeckNameChange}
+                  className="form-control"
+                  placeholder={deck.name}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="deckDescription" className="form-label">
+                  Description
+                </label>
+                <textarea
+                  id="deckDescription"
+                  value={deck.description}
+                  onChange={handleDeckDescriptionChange}
+                  className="form-control"
+                  placeholder={deck.description}
+                  required
+                />
+              </div>
+              <Link to={`/decks/${deckId}`} className="btn btn-secondary mr-2">
+                Cancel
+              </Link>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-        <div>
-          <label htmlFor="deckDescription">Description</label>
-          <input
-            id="deckDescription"
-            value={deck.description}
-            onChange={handleDeckDescriptionChange}
-            placeholder={deck.description}
-            required
-          />
-        </div>
-        <Link to={`/decks/${deckId}`}>Cancel</Link>
-        <button type="submit">Submit</button>
-      </form>
+      </div>
     </div>
   );
 }
 
 export default EditDeck;
+
 
 

@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 function ListOfDecks() {
   const [decks, setDecks] = useState([]);
 
-  useEffect(() => listDecks().then(setDecks), []);
+  useEffect(() => {
+    listDecks().then(setDecks);
+  }, []);
 
   const handleDeleteClick = (deckId) => {
     console.log("Delete button clicked");
@@ -26,21 +28,35 @@ function ListOfDecks() {
 
   return (
     <div>
-      <Link to="/decks/new" className="btn btn-secondary">
+      <Link to="/decks/new" className="btn btn-secondary mb-3">
         + Create Deck
       </Link>
       <div>
         {decks.map((deck) => (
-          <div key={deck.id}>
+          <div key={deck.id} className="border p-3 mb-3">
             <DeckDetail deck={deck} />
-            <Link to={`/decks/${deck.id}`}>View</Link>
-            <Link to={`/decks/${deck.id}/study`}>Study</Link>
-            <button
-              onClick={() => handleDeleteClick(deck.id)}
-              className="btn btn-danger"
-            >
-              Delete
-            </button>
+            <div className="d-flex justify-content-between">
+              <div>
+                <Link
+                  to={`/decks/${deck.id}`}
+                  className="btn btn-secondary mr-1"
+                >
+                  View
+                </Link>
+                <Link
+                  to={`/decks/${deck.id}/study`}
+                  className="btn btn-primary"
+                >
+                  Study
+                </Link>
+              </div>
+              <button
+                onClick={() => handleDeleteClick(deck.id)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>
