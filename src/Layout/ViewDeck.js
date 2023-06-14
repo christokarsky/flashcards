@@ -46,6 +46,17 @@ function ViewDeck() {
   if (deck.id) {
     return (
       <div>
+          <nav>
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            </li>
+            <li className="breadcrumb-item active">View Deck</li>
+          </ol>
+        </nav>
         <h2 className="mb-3">Cards</h2>
         <div className="d-flex">
           <div className="mr-1">
