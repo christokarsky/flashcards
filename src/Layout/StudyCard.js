@@ -59,7 +59,7 @@ function StudyCard({ deck, deckId }) {
       {session.viewed && session.index < deck.cards.length - 1 ? (
         <button onClick={handleFlipNext} className="btn btn-primary">Next</button>
       ) : (
-        session.viewed && <button onClick={handleReset} className="btn btn-primary">Reset</button>
+        session.viewed && <button onClick={handleReset} className="btn btn-warning">Reset</button>
       )}
       </div>
     </div>
