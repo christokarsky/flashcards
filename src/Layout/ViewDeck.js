@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { readDeck, deleteDeck, deleteCard } from "../utils/api";
+import {Trash, Book, Pencil} from 'react-bootstrap-icons';
 
 function ViewDeck() {
   const { deckId } = useParams();
@@ -61,17 +62,17 @@ function ViewDeck() {
         <div className="d-flex">
           <div className="mr-1">
             <Link to={`/decks/${deckId}/edit`}>
-              <button className="btn btn-primary mr-1 mb-2">Edit</button>
+              <button className="btn btn-primary mr-1 mb-2">Edit <Pencil /></button>
             </Link>
           </div>
           <div className="mr-1">
             <Link to={`/decks/${deckId}/study`}>
-              <button className="btn btn-primary mr-1 mb-2">Study</button>
+              <button className="btn btn-primary mr-1 mb-2">Study <Book /></button>
             </Link>
           </div>
           <div className="mr-1">
             <Link to={`/decks/${deckId}/cards/new`}>
-              <button className="btn btn-primary mr-1 mb-2">Add Cards</button>
+              <button className="btn btn-primary mr-1 mb-2">Add Cards +</button>
             </Link>
           </div>
           <div className="ml-auto">
@@ -80,6 +81,7 @@ function ViewDeck() {
               onClick={() => handleDeckDelete(deckId)}
             >
               Delete
+              <Trash />
             </button>
           </div>
         </div>
@@ -93,13 +95,13 @@ function ViewDeck() {
                 <p>{card.back}</p>
                 <div className="d-flex justify-content-end">
                   <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>
-                    <button className="btn btn-primary mr-1">edit</button>
+                    <button className="btn btn-primary mr-1">edit <Pencil /></button>
                   </Link>
                   <button
                     className="btn btn-danger"
                     onClick={() => handleCardDelete(card.id)}
                   >
-                    delete
+                    delete <Trash />
                   </button>
                 </div>
               </div>
