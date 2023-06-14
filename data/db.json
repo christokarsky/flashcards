@@ -2,8 +2,8 @@
   "decks": [
     {
       "id": 1,
-      "name": "Rendering in React!",
-      "description": "React's Component Structure"
+      "name": "Rendering in react",
+      "description": "rendering in react......."
     },
     {
       "name": "React Router",

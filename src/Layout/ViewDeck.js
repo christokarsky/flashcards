@@ -91,8 +91,8 @@ function ViewDeck() {
               <div className="col-md-6">
                 <p>{card.front}</p>
               </div>
-              <div className="col-md-6">
-                <p>{card.back}</p>
+              <div className="col-md-6 justify-content-end">
+                <p>{card.back}</p>   
                 <div className="d-flex justify-content-end">
                   <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>
                     <button className="btn btn-primary mr-1">edit <Pencil /></button>

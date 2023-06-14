@@ -30,7 +30,13 @@ function EditDeck() {
   };
 
   useEffect(() => {
-    readDeck(deckId).then(setDeck);
+    readDeck(deckId)
+      .then((fetchedDeck) => {
+        setDeck((prevDeck) => ({ ...prevDeck, ...fetchedDeck }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [deckId]);
 
   return (
@@ -58,7 +64,7 @@ function EditDeck() {
                 <input
                   type="text"
                   id="deckName"
-                  value={deck.name}
+                  value={deckName}
                   onChange={handleDeckNameChange}
                   className="form-control"
                   placeholder={deck.name}
@@ -71,7 +77,7 @@ function EditDeck() {
                 </label>
                 <textarea
                   id="deckDescription"
-                  value={deck.description}
+                  value={deckDescription}
                   onChange={handleDeckDescriptionChange}
                   className="form-control"
                   placeholder={deck.description}
@@ -93,6 +99,3 @@ function EditDeck() {
 }
 
 export default EditDeck;
-
-
-
