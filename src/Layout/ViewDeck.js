@@ -62,7 +62,7 @@ function ViewDeck() {
         <div className="d-flex">
           <div className="mr-1">
             <Link to={`/decks/${deckId}/edit`}>
-              <button className="btn btn-primary mr-1 mb-2">Edit <Pencil /></button>
+              <button className="btn btn-secondary mr-1 mb-2">Edit <Pencil /></button>
             </Link>
           </div>
           <div className="mr-1">
