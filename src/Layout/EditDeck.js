@@ -19,7 +19,11 @@ function EditDeck() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const updatedDeck = { ...deck, name: deckName, description: deckDescription };
+    const updatedDeck = {
+      ...deck,
+      name: deckName,
+      description: deckDescription,
+    };
     updateDeck(updatedDeck)
       .then(() => {
         history.push(`/decks/${deckId}`);
@@ -33,6 +37,8 @@ function EditDeck() {
     readDeck(deckId)
       .then((fetchedDeck) => {
         setDeck((prevDeck) => ({ ...prevDeck, ...fetchedDeck }));
+        setDeckDescription(fetchedDeck.description)
+        setDeckName(fetchedDeck.name)
       })
       .catch((error) => {
         console.log(error);
@@ -67,7 +73,7 @@ function EditDeck() {
                   value={deckName}
                   onChange={handleDeckNameChange}
                   className="form-control"
-                  placeholder={deck.name}
+                  //placeholder={deck.name}
                   required
                 />
               </div>
@@ -80,7 +86,7 @@ function EditDeck() {
                   value={deckDescription}
                   onChange={handleDeckDescriptionChange}
                   className="form-control"
-                  placeholder={deck.description}
+                  //placeholder={deck.description}
                   required
                 />
               </div>

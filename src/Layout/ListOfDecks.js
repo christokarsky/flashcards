@@ -10,7 +10,7 @@ function ListOfDecks() {
 
   useEffect(() => {
     listDecks().then(setDecks);
-  }, []);
+  }, [decks]);
 
   const handleDeleteClick = (deckId) => {
     console.log("Delete button clicked");
