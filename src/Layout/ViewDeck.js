@@ -58,7 +58,8 @@ function ViewDeck() {
             <li className="breadcrumb-item active">View Deck</li>
           </ol>
         </nav>
-        <h2 className="mb-3">Cards</h2>
+        <h3>{deck.name}</h3>
+        <p>{deck.description}</p>
         <div className="d-flex">
           <div className="mr-1">
             <Link to={`/decks/${deckId}/edit`}>
@@ -85,6 +86,7 @@ function ViewDeck() {
             </button>
           </div>
         </div>
+        <h2 className="mb-3">Cards</h2>
         {cards.map((card) => (
           <div key={card.id} className="border p-3 mb-3">
             <div className="row">
