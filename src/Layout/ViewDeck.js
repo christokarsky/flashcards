@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { readDeck, deleteDeck, deleteCard } from "../utils/api";
-import {Trash, Book, Pencil} from 'react-bootstrap-icons';
+//import {Trash, Book, Pencil} from 'react-bootstrap-icons';
 
 function ViewDeck() {
   const { deckId } = useParams();
@@ -62,12 +62,12 @@ function ViewDeck() {
         <div className="d-flex">
           <div className="mr-1">
             <Link to={`/decks/${deckId}/edit`}>
-              <button className="btn btn-secondary mr-1 mb-2">Edit <Pencil /></button>
+              <button className="btn btn-secondary mr-1 mb-2">Edit </button>
             </Link>
           </div>
           <div className="mr-1">
             <Link to={`/decks/${deckId}/study`}>
-              <button className="btn btn-primary mr-1 mb-2">Study <Book /></button>
+              <button className="btn btn-primary mr-1 mb-2">Study </button>
             </Link>
           </div>
           <div className="mr-1">
@@ -81,7 +81,7 @@ function ViewDeck() {
               onClick={() => handleDeckDelete(deckId)}
             >
               Delete
-              <Trash />
+              
             </button>
           </div>
         </div>
@@ -95,13 +95,13 @@ function ViewDeck() {
                 <p>{card.back}</p>   
                 <div className="d-flex justify-content-end">
                   <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>
-                    <button className="btn btn-primary mr-1">edit <Pencil /></button>
+                    <button className="btn btn-primary mr-1">edit </button>
                   </Link>
                   <button
                     className="btn btn-danger"
                     onClick={() => handleCardDelete(card.id)}
                   >
-                    delete <Trash />
+                    delete 
                   </button>
                 </div>
               </div>

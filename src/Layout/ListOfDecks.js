@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { listDecks, deleteDeck } from "../utils/api/index";
 import DeckDetail from "./DeckDetail";
 import { Link } from "react-router-dom";
-import {Trash, Eye, Book} from 'react-bootstrap-icons';
+//import {Trash, Eye, Book} from 'react-bootstrap-icons';
 
 
 function ListOfDecks() {
@@ -44,14 +44,14 @@ function ListOfDecks() {
                   className="btn btn-secondary mr-1"
                 >
                   View
-                  <Eye />
+                  
                 </Link>
                 <Link
                   to={`/decks/${deck.id}/study`}
                   className="btn btn-primary"
                 >
                   Study
-                  <Book />
+                  
                 </Link>
               </div>
               <button
@@ -59,7 +59,7 @@ function ListOfDecks() {
                 className="btn btn-danger"
               >
                 Delete
-                <Trash />
+               
               </button>
             </div>
           </div>
